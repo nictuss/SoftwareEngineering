@@ -5,7 +5,7 @@
  */
 package com.mycompany.rest.servicedb;
 
-/*import com.fasterxml.jackson.jaxrs.json.*;
+import com.fasterxml.jackson.jaxrs.json.*;
 import java.util.*;
 import org.apache.cxf.binding.BindingFactoryManager;
 import org.apache.cxf.jaxrs.*;
@@ -39,10 +39,10 @@ public class Server {
         while (true) {
         }
     }
-}*/
+}
 
 /* WITHOUT JSON*/
-
+/*
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 
@@ -65,4 +65,4 @@ public class Server {
         while (true) {
         }
     }
-}
+}*/

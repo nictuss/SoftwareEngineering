@@ -56,8 +56,8 @@ public class FligthsRepository {
 
     @GET
     @Path("{fligthId}")
-    @Produces("text/xml")
-    // @Produces("application/json")
+    // @Produces("text/xml")
+    @Produces("application/json")
     public Fligth getFligth(@PathParam("fligthId") int fligthId) {
 
         return findFligthById(fligthId);
@@ -65,8 +65,8 @@ public class FligthsRepository {
 
     @PUT
     @Path("{fligthId}")
-    @Consumes("text/xml")
-    // @Consumes("application/json")
+    // @Consumes("text/xml")
+    @Consumes("application/json")
     public Response updateFligth(@PathParam("fligthId") int fligthId, Fligth fligth) {
         Fligth existing = findFligthById(fligthId);
         if (existing == null) {
@@ -85,9 +85,7 @@ public class FligthsRepository {
         PreparedStatement stat = null;
         Fligth fl = null;
         try {
-            System.out.println("ciao");
             stat = conn.prepareStatement("select * from fligth where id = ?");
-            System.out.println("ciao");
             stat.setString(1, String.valueOf(id));
 
             ResultSet rs = stat.executeQuery();
@@ -134,16 +132,16 @@ public class FligthsRepository {
 
     @GET
     @Path("{fligthId}/destinations/{destinationId}")
-    @Produces("text/xml")
-    // @Produces("application/json")
+    // @Produces("text/xml")
+    @Produces("application/json")
     public Destination getDestination(@PathParam("fligthId") int fligthId, @PathParam("destinationId") int destinationId) {
         return findDestinationById(fligthId, destinationId);
     }
 
     @POST
     @Path("{fligthId}/destinations/")
-    @Produces("text/xml")
-    // @Consumes("application/json")
+    // @Produces("text/xml")
+    @Consumes("application/json")
     public Response postDestination(@PathParam("fligthId") int fligthId, Destination destination) {
         Destination dest = null;
         Fligth fl = findFligthById(fligthId);
@@ -185,8 +183,8 @@ public class FligthsRepository {
     
     @PUT
     @Path("{fligthId}/destinations/{destinationId}")
-    @Consumes("text/xml")
-    // @Consumes("application/json")
+    // @Consumes("text/xml")
+    @Consumes("application/json")
     public Response putDestination(@PathParam("fligthId") int fligthId, @PathParam("destinationId") int destinationId, Destination destination) {
         Destination dest = null;
         Fligth fl = findFligthById(fligthId);
@@ -230,7 +228,6 @@ public class FligthsRepository {
     @DELETE
     @Path("{fligthId}/destinations/{destinationId}")
     public Response deleteDestination(@PathParam("fligthId") int fligthId, @PathParam("destinationId") int destinationId) {
-        System.out.println("Ciao");
         PreparedStatement stat = null;
         try {
             stat = conn.prepareStatement("delete from destination where id = ?");
@@ -257,7 +254,7 @@ public class FligthsRepository {
     private Destination findDestinationById(int fligthId, int id) {
         Fligth fl = findFligthById(fligthId);
         
-        if(fl.getDestinationId() == fligthId) {
+        if(fl != null) {
             PreparedStatement stat = null;
             Destination dest = null;
             try {
